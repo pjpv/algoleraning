@@ -1,18 +1,18 @@
-
-
+import java.awt.*;
 
 public class Circle {
     public int x, y;
     private int r;
     public int vx, vy;
+    public Color color;
 
-    public Circle(int x, int y, int r, int vx, int vy) {
+    public Circle(int x, int y, int r, int vx, int vy,Color c) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.vx = vx;
         this.vy = vy;
-
+        this.color = c;
     }
 
     public int getR() {
@@ -42,5 +42,8 @@ public class Circle {
             y = maxy - r - bianju;
             vy = -vy;
         }
+
+
     }
+
 }

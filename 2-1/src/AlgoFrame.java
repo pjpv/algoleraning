@@ -56,15 +56,6 @@ public class AlgoFrame extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-
-//            Integer jg = 3;
-//            Integer sl = 100;
-//            for (int i = 0; i < sl; i++) {
-//                g.drawOval(50 + i * jg, 50 + i * jg, 30, 30);
-//            }
-//            for (int i = sl; i > 0; i--) {
-//                g.drawOval((50 + i * jg) * 2, 50 + i * jg, 30, 30);
-//            }
             Graphics2D g2d = (Graphics2D) g;
 
             // 抗锯齿
@@ -73,46 +64,37 @@ public class AlgoFrame extends JFrame {
                     RenderingHints.VALUE_ANTIALIAS_ON
             );
             g2d.addRenderingHints(hints);
+
+
             // 设置线条粗细
             AlgoVisHelper.setStrokeWidth(g2d, 1);
-            AlgoVisHelper.strokeRoundRectangle(g2d, canvasWidth / 2, canvasHeight / 2, canvasWidth/2-50);
-            if (null != circles && 0 < circles.length)
-                for (Circle circle : circles)
+            // 画边框
+            AlgoVisHelper.strokeRoundRectangle(g2d, canvasWidth / 2, canvasHeight / 2, canvasWidth / 2 - 50);
+
+            g2d.setFont(new Font("宋体",Font.BOLD,16));
+            if (null != circles && 0 < circles.length) {
+                Color c = Color.MAGENTA;
+//                for (Circle circle : circles) {
+//                    if (circle.color != c) {
+//                        AlgoVisHelper.setColor(g2d, circle.color);
+//                    }
+//                    AlgoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
+////                    AlgoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+//                }
+                for (int i = 0; i < circles.length; i++) {
+
+                    if (circles[i].color != c) {
+                        AlgoVisHelper.setColor(g2d, circles[i].color);
+                    }
+                    AlgoVisHelper.fillCircle(g2d, circles[i].x, circles[i].y, circles[i].getR());
 //                    AlgoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
-                    AlgoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
 
-//            int strokeWidth = 10;
-//            g2d.setStroke(new BasicStroke(strokeWidth));
-//            // 设置线条粗细
-//            AlgoVisHelper.setStrokeWidth(g2d, 10);
-//            // 设置颜色
-//            AlgoVisHelper.setColor(g2d, Color.BLACK);
-//            g2d.setColor(Color.blue);
-            // 画圆圈
-//            AlgoVisHelper.strokeCircle(g2d, canvasWidth / 2, canvasHeight / 2, 50);
-//            AlgoVisHelper.strokeCircle(g2d, canvasWidth / 2, canvasHeight / 2, 100);
-//            AlgoVisHelper.strokeCircle(g2d, canvasWidth / 2, canvasHeight / 2, 150);
-//            for (int i = 0; i < 8; i++) {
-//                AlgoVisHelper.strokeCircle(g2d, canvasWidth / 2, canvasHeight / 2, 10 + i * 30);
-//            }
-//            Ellipse2D circle = new Ellipse2D.Double(50, 50, 300, 300);
-//            g2d.draw(circle);
 
-//            AlgoVisHelper.setColor(g2d, Color.RED);
-//            // 画实心圆
-//            AlgoVisHelper.fillCircle(g2d, canvasWidth / 2, canvasHeight / 2, 20);
-//            Ellipse2D circle2 = new Ellipse2D.Double(60, 60, 280, 280);
-//            g2d.setColor(Color.green);
-//            g2d.fill(circle2);
-//
-//            Rectangle2D circle3 = new Rectangle2D.Double(100, 100, 280, 280);
-//
-//            g2d.setColor(Color.RED);
-//            g2d.draw(circle3);
-            // 圆角方形
-//            RoundRectangle2D circle4 = new RoundRectangle2D.Double(100, 100, 280, 280, 50, 50);
-//            g2d.setColor(Color.RED); // 设置颜色
-//            g2d.draw(circle4);      // 话边框
+                    AlgoVisHelper.setColor(g2d, Color.WHITE);
+                    g2d.drawString(String.valueOf(i), circles[i].x, circles[i].y);
+                    AlgoVisHelper.setColor(g2d, c);
+                }
+            }
 
 
         }

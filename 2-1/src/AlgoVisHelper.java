@@ -45,4 +45,32 @@ public class AlgoVisHelper {
         }
 
     }
+
+    public static void checkCircleCollision(Circle circle, Circle[] circles) {//气泡间碰撞检测
+        for (Circle circlel : circles) {
+            if ((circle == circlel) || (circle.x == circlel.x && circle.y == circlel.y))
+                continue;
+            boolean r = true;
+            boolean isFilp_x = false;
+            boolean isFilp_y = false;
+            while (r) {
+                double a = Math.sqrt((circle.x - circlel.x) * (circle.x - circlel.x) + (circle.y - circlel.y) * (circle.y - circlel.y));
+                if (a <= (circle.getR() * 2)) {
+                    if (!isFilp_x) {
+                        circle.vx = -circle.vx;
+                        isFilp_x = true;
+                    }
+                    if (!isFilp_y) {
+                        circle.vy = -circle.vy;
+                        isFilp_y = true;
+                    }
+                    circle.y += circle.vy;
+                    circle.x += circle.vx;
+                } else {
+                    r = false;
+                }
+            }
+        }
+
+    }
 }
